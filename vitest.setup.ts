@@ -1,12 +1,20 @@
+// @ts-ignore
+globalThis.__DEV__ = true;
+
 import { vi } from "vitest";
 
 // Common Expo and React Native mocks for Vitest
-vi.mock("expo-crypto", () => ({
-  digestStringAsync: vi.fn(async () => "mocked-sha256-hash"),
-  CryptoDigestAlgorithm: {
-    SHA256: "SHA-256",
-  },
-}));
+vi.mock("expo-crypto", () => {
+  const crypto = require("crypto");
+  return {
+    digestStringAsync: vi.fn(async (_algo: string, str: string) => {
+      return crypto.createHash("sha256").update(str).digest("hex");
+    }),
+    CryptoDigestAlgorithm: {
+      SHA256: "SHA-256",
+    },
+  };
+});
 
 vi.mock("expo-sqlite", () => ({
   openDatabaseSync: vi.fn(() => ({

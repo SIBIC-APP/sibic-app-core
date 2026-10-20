@@ -1,0 +1,88 @@
+{
+  "packId": "historia",
+  "version": 1,
+  "sources": [
+    {
+      "id": "src-const-85",
+      "title": "Constitución Política de la República de Guatemala (1985)",
+      "url": "https://www.congreso.gob.gt",
+      "publisher": "Asamblea Nacional Constituyente",
+      "retrievedAt": "2026-10-20T00:00:00Z"
+    },
+    {
+      "id": "src-tse-hist",
+      "title": "Historia y Normativa Electoral de Guatemala",
+      "url": "https://www.tse.org.gt",
+      "publisher": "Tribunal Supremo Electoral de Guatemala",
+      "retrievedAt": "2026-10-20T00:00:00Z"
+    },
+    {
+      "id": "src-paz-96",
+      "title": "Acuerdo de Paz Firme y Duradera",
+      "url": "https://peacemaker.un.org",
+      "publisher": "Organización de las Naciones Unidas",
+      "retrievedAt": "2026-10-20T00:00:00Z"
+    }
+  ],
+  "periods": [
+    {
+      "id": "per-rev-44",
+      "title": "Revolución de Octubre y Período Democrático",
+      "startYear": 1944,
+      "endYear": 1954,
+      "summary": "Período caracterizado por profundas transformaciones sociales, la creación del Seguro Social (IGSS), la autonomía universitaria y el Código de Trabajo.",
+      "sort": 1
+    },
+    {
+      "id": "per-conflicto-54-85",
+      "title": "Período del Conflicto Interno e Inestabilidad",
+      "startYear": 1954,
+      "endYear": 1985,
+      "summary": "Etapa marcada por confrontación interna, gobiernos militares y restricciones cívicas hasta el retorno a la institucionalidad constitucional.",
+      "sort": 2
+    },
+    {
+      "id": "per-democracia-85",
+      "title": "Era Democrática Constitucional y Acuerdos de Paz",
+      "startYear": 1985,
+      "endYear": null,
+      "summary": "Vigencia de la Constitución de 1985, creación del TSE y Corte de Constitucionalidad, firma de los Acuerdos de Paz de 1996 y elecciones democráticas periódicas.",
+      "sort": 3
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-1944-rev",
+      "periodId": "per-rev-44",
+      "title": "Revolución del 20 de Octubre",
+      "year": 1944,
+      "dateDisplay": "20 de octubre de 1944",
+      "summary": "Movimiento ciudadano y militar que derrocó la dictadura de Federico Ponce Vaides, permitiendo elecciones libres y la promulgación de la Constitución de 1945.",
+      "details": "Condujo a la creación de instituciones fundamentales como el Instituto Guatemalteco de Seguridad Social (IGSS) y el Banco de Guatemala.",
+      "sourceId": "src-const-85",
+      "sort": 1
+    },
+    {
+      "id": "ev-1985-const",
+      "periodId": "per-democracia-85",
+      "title": "Promulgación de la Constitución Política y Creación del TSE",
+      "year": 1985,
+      "dateDisplay": "31 de mayo de 1985",
+      "summary": "La Asamblea Nacional Constituyente proclama la Carta Magna vigente y la Ley Electoral y de Partidos Políticos.",
+      "details": "Estableció el sistema de pesos y contrapesos con la Corte de Constitucionalidad, la Procuraduría de los Derechos Humanos y el Tribunal Supremo Electoral.",
+      "sourceId": "src-tse-hist",
+      "sort": 2
+    },
+    {
+      "id": "ev-1996-paz",
+      "periodId": "per-democracia-85",
+      "title": "Firma de los Acuerdos de Paz Firme y Duradera",
+      "year": 1996,
+      "dateDisplay": "29 de diciembre de 1996",
+      "summary": "Culminación oficial del conflicto armado interno de 36 años en el Palacio Nacional de la Cultura.",
+      "details": "Compromiso de reformas institucionales, reconocimiento de derechos de pueblos indígenas y fortalecimiento de la sociedad civil.",
+      "sourceId": "src-paz-96",
+      "sort": 3
+    }
+  ]
+}

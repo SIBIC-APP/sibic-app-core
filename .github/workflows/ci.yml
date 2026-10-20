@@ -25,4 +25,6 @@ jobs:
 
       - run: pnpm test
 
+      - run: pnpm run content:validate
+
       - run: pnpm exec expo export --platform web

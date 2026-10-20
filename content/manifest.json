@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "minAppVersion": "1.0.0",
+  "generatedAt": "2026-10-20T23:36:23.180Z",
+  "packs": [
+    {
+      "id": "historia",
+      "version": 1,
+      "url": "historia.v1.json",
+      "sha256": "63b042fffc739540cba3ace0aaa9132c739934dc49cac4953ec0272bbd6353b3",
+      "bytes": 3575
+    }
+  ]
+}
