@@ -6,6 +6,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import { getContentDatabase, getUserDatabase } from "@/db";
 import { ensureEmbeddedSeeds } from "@/content/seed";
 import { useUserStore } from "@/store/user-store";
+import { useAuthStore } from "@/store/auth-store";
 
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
@@ -24,6 +25,9 @@ export default function RootLayout() {
 
         // Load user store from user.db
         await useUserStore.getState().loadState(userDb);
+
+        // Initialize Supabase auth listener
+        await useAuthStore.getState().initAuth();
 
         setIsReady(true);
       } catch (err: unknown) {
@@ -72,6 +76,7 @@ export default function RootLayout() {
         <Stack.Screen name="brujula/index" options={{ title: "Mi Brújula" }} />
         <Stack.Screen name="brujula/test" options={{ title: "Cuestionario Cívico" }} />
         <Stack.Screen name="brujula/resultado" options={{ title: "Tu Balance Cívico" }} />
+        <Stack.Screen name="perfil/index" options={{ title: "Mi Perfil Cívico" }} />
       </Stack>
     </>
   );

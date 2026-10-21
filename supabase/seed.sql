@@ -1,0 +1,2 @@
+-- Development Seed Data for Supabase
+-- Can be used with `supabase db reset` in local environment

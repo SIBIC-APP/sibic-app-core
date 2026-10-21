@@ -12,8 +12,8 @@ export default function HomeScreen() {
     <SafeAreaView className="flex-1 bg-background">
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 40 }}>
         {/* Brand Header */}
-        <View className="mb-6 pt-2">
-          <View className="flex-row items-center space-x-2">
+        <View className="mb-6 pt-2 flex-row items-center justify-between">
+          <View className="flex-row items-center">
             <View className="w-10 h-10 rounded-xl bg-primary items-center justify-center mr-3 shadow-sm">
               <Text className="text-white font-extrabold text-xl">S</Text>
             </View>
@@ -24,9 +24,12 @@ export default function HomeScreen() {
               </Text>
             </View>
           </View>
-          <Text className="text-muted-foreground text-sm mt-3 leading-5">
-            Información cívica, aprendizaje y contexto político para Guatemala.
-          </Text>
+          <TouchableOpacity
+            className="w-10 h-10 rounded-full bg-secondary border border-border items-center justify-center active:opacity-80"
+            onPress={() => router.push("/perfil")}
+          >
+            <Text className="text-lg">👤</Text>
+          </TouchableOpacity>
         </View>
 
         {/* User Progress Banner (Gamification) */}
