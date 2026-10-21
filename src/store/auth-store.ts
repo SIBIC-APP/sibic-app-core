@@ -54,7 +54,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         user,
       });
 
-      // Listen for auth state changes
+      // escuchar cambios en el estado de autenticacion
       supabase.auth.onAuthStateChange((_event, newSession) => {
         let updatedUser: UserProfile | null = null;
         if (newSession?.user) {

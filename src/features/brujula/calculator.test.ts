@@ -49,10 +49,10 @@ describe("Mi Brújula Calculation Engine", () => {
   });
 
   it("calculates maximum positive scores (+100, +100) and quadrant q4 when aligned strongly with positive weights", () => {
-    // q1 (+1.0 weight) -> answer 5 (+2)
-    // q2 (-1.0 weight) -> answer 1 (-2) -> (-2 * -1 = +2)
-    // q3 (+1.0 weight) -> answer 5 (+2)
-    // q4 (-1.0 weight) -> answer 1 (-2) -> (-2 * -1 = +2)
+    // q1 peso mas 1.0 respuesta 5 equivalente a mas 2
+    // q2 peso menos 1.0 respuesta 1 equivalente a mas 2
+    // q3 peso mas 1.0 respuesta 5 equivalente a mas 2
+    // q4 peso menos 1.0 respuesta 1 equivalente a mas 2
     const answers = { q1: 5, q2: 1, q3: 5, q4: 1 };
     const result = calculateBrujulaScore(sampleQuestions, answers);
 
@@ -62,10 +62,10 @@ describe("Mi Brújula Calculation Engine", () => {
   });
 
   it("calculates maximum negative scores (-100, -100) and quadrant q1 when aligned strongly with negative weights", () => {
-    // q1 (+1.0 weight) -> answer 1 (-2) -> -2
-    // q2 (-1.0 weight) -> answer 5 (+2) -> -2
-    // q3 (+1.0 weight) -> answer 1 (-2) -> -2
-    // q4 (-1.0 weight) -> answer 5 (+2) -> -2
+    // q1 peso mas 1.0 respuesta 1 equivalente a menos 2
+    // q2 peso menos 1.0 respuesta 5 equivalente a menos 2
+    // q3 peso mas 1.0 respuesta 1 equivalente a menos 2
+    // q4 peso menos 1.0 respuesta 5 equivalente a menos 2
     const answers = { q1: 1, q2: 5, q3: 1, q4: 5 };
     const result = calculateBrujulaScore(sampleQuestions, answers);
 
@@ -87,7 +87,7 @@ describe("Mi Brújula Calculation Engine", () => {
     expect(emptyResult.scores.social).toBe(0);
     expect(emptyResult.percentageCompleted).toBe(0);
 
-    // Partially answered (2 of 4)
+    // respondido parcialmente 2 de 4
     const partialResult = calculateBrujulaScore(sampleQuestions, { q1: 5 });
     expect(partialResult.completedQuestions).toBe(1);
     expect(partialResult.totalQuestions).toBe(4);

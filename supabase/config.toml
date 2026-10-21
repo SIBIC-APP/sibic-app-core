@@ -1,4 +1,4 @@
-# Supabase CLI configuration for SIBIC
+# configuracion de supabase cli para sibic
 project_id = "sibic-app"
 
 [api]
@@ -16,7 +16,7 @@ jwt_expiry = 3600
 enable_signup = true
 
 [auth.email]
-enable_signup = false # Solo OAuth según Dev Plan (sección 10 y 12)
+enable_signup = false # solo oauth segun plan de desarrollo secciones 10 y 12
 
 [auth.external.google]
 enabled = true

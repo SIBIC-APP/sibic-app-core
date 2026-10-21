@@ -33,7 +33,7 @@ export class NodeSqliteAdapter implements DatabaseAdapter {
   }
 
   async transaction<T>(cb: (tx: DatabaseAdapter) => Promise<T>): Promise<T> {
-    // In better-sqlite3, transactions are synchronous or executed with BEGIN/COMMIT
+    // en better sqlite3 las transacciones se ejecutan con begin y commit
     this.db.exec("BEGIN");
     try {
       const res = await cb(this);

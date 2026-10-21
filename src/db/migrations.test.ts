@@ -19,7 +19,7 @@ describe("Database Migrations", () => {
     const versionAfterMigrations = await runMigrations(db, contentMigrations, "content.db");
     expect(versionAfterMigrations).toBe(contentMigrations.length);
 
-    // Verify key tables exist
+    // verificar que existan las tablas principales
     const tables = await db.all<{ name: string }>(
       "SELECT name FROM sqlite_master WHERE type='table';"
     );
@@ -38,7 +38,7 @@ describe("Database Migrations", () => {
     expect(tableNames).toContain("brujula_question");
     expect(tableNames).toContain("brujula_quadrant");
 
-    // Running again should be a no-op and keep current version
+    // ejecutar de nuevo no debe realizar cambios y debe mantener la version actual
     const versionAfterNoop = await runMigrations(db, contentMigrations, "content.db");
     expect(versionAfterNoop).toBe(contentMigrations.length);
   });

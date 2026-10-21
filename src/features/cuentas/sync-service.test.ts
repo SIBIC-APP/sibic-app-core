@@ -15,7 +15,7 @@ describe("AccountSyncService & User DB Persistence", () => {
   });
 
   it("reads local user snapshot excluding brujula data", async () => {
-    // Populate user.db with progress and a private brujula result
+    // poblar user db con progreso y resultado privado de brujula
     await userDb.run("INSERT INTO progress (lesson_id, completed_at, xp) VALUES (?, ?, ?);", [
       "les-1",
       "2026-10-20T00:00:00Z",
@@ -31,7 +31,7 @@ describe("AccountSyncService & User DB Persistence", () => {
       "2026-10-20T00:00:00Z",
     ]);
 
-    // Insert private local Brújula result
+    // insertar resultado privado local de brujula
     await userDb.run(
       "INSERT INTO brujula_result (id, taken_at, answers, scores) VALUES (1, ?, ?, ?);",
       ["2026-10-20T00:00:00Z", "{}", '{"scores":{"economic":-50,"social":20}}']
@@ -44,13 +44,13 @@ describe("AccountSyncService & User DB Persistence", () => {
     expect(snapshot.unlockedCats).toEqual(["cat-novato"]);
     expect(snapshot.savedItems).toHaveLength(1);
 
-    // Verify snapshot does not contain brujula properties
+    // verificar que la instantanea no contenga propiedades de brujula
     expect(snapshot).not.toHaveProperty("brujula");
     expect(snapshot).not.toHaveProperty("scores");
   });
 
   it("applies merged snapshot to user.db without affecting brujula_result", async () => {
-    // Existing local state
+    // estado local existente
     await userDb.run("INSERT INTO progress (lesson_id, completed_at, xp) VALUES (?, ?, ?);", [
       "les-1",
       "2026-10-20T00:00:00Z",
@@ -73,7 +73,7 @@ describe("AccountSyncService & User DB Persistence", () => {
 
     await AccountSyncService.writeMergedSnapshot(userDb, mergedRemote);
 
-    // Verify updated progress
+    // verificar progreso actualizado
     const progressRows = await userDb.all("SELECT * FROM progress;");
     expect(progressRows).toHaveLength(3);
 
@@ -83,7 +83,7 @@ describe("AccountSyncService & User DB Persistence", () => {
     const savedRows = await userDb.all("SELECT * FROM saved_item;");
     expect(savedRows).toHaveLength(1);
 
-    // CRITICAL: Verify brujula_result was completely preserved
+    // verificar que el resultado de brujula se mantenga intacto
     const brujulaRow = await userDb.getFirst<{ answers: string; scores: string }>(
       "SELECT answers, scores FROM brujula_result WHERE id = 1;"
     );

@@ -34,7 +34,7 @@ export async function initDatabases(): Promise<{
   return { contentDb, userDb };
 }
 
-// Reset instances (useful for testing or cache cleanup)
+// reiniciar instancias util para pruebas o limpieza de cache
 export async function closeDatabases(): Promise<void> {
   if (contentDbInstance) {
     await contentDbInstance.close();

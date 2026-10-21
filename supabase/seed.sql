@@ -1,2 +1,2 @@
--- Development Seed Data for Supabase
--- Can be used with `supabase db reset` in local environment
+-- datos de semilla de desarrollo para supabase
+-- se puede usar con supabase db reset en entorno local

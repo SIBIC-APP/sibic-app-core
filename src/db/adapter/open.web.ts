@@ -38,12 +38,12 @@ class WebSqliteAdapter implements DatabaseAdapter {
   }
 }
 
-// In-memory fallback adapter for web environments lacking WASM / COOP headers
+// adaptador de respaldo en memoria para entornos web sin soporte wasm o cabeceras coop
 class MemoryFallbackAdapter implements DatabaseAdapter {
   private tables = new Map<string, Array<Record<string, unknown>>>();
 
   async exec(sql: string): Promise<void> {
-    // Basic table creation parser for memory fallback
+    // parseador basico de creacion de tablas para respaldo en memoria
     const createMatches = sql.matchAll(/CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?(\w+)/gi);
     for (const match of createMatches) {
       if (!this.tables.has(match[1])) {
@@ -53,7 +53,7 @@ class MemoryFallbackAdapter implements DatabaseAdapter {
   }
 
   async run(sql: string, params: unknown[] = []): Promise<RunResult> {
-    // Basic run handler for in-memory fallback
+    // manejador basico de ejecucion para respaldo en memoria
     return { changes: 1, lastInsertRowId: 1 };
   }
 

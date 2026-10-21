@@ -1,9 +1,9 @@
 /**
- * Compares two semantic version strings (e.g. "1.0.0", "1.2.3").
- * Returns:
- *   1 if v1 > v2
- *  -1 if v1 < v2
- *   0 if v1 === v2
+ * compara dos versiones semanticas como por ejemplo 1.0.0 o 1.2.3
+ * retorna
+ *   1 si v1 es mayor a v2
+ *  -1 si v1 es menor a v2
+ *   0 si ambas versiones son iguales
  */
 export function compareSemver(v1: string, v2: string): number {
   const clean = (v: string) => v.replace(/^v/, "").trim();

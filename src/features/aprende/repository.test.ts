@@ -42,7 +42,7 @@ describe("AprendeRepository", () => {
     expect(initialProgress.totalXp).toBe(0);
     expect(initialProgress.level.level).toBe(1);
 
-    // Complete lesson 1 (50 XP)
+    // completar leccion 1 con 50 xp
     const result1 = await repo.completeLesson("les-estado-1", 50);
     expect(result1.isFirstCompletion).toBe(true);
     expect(result1.xpEarned).toBe(50);
@@ -52,13 +52,13 @@ describe("AprendeRepository", () => {
     expect(progressAfter1.totalXp).toBe(50);
     expect(progressAfter1.completedLessonIds).toContain("les-estado-1");
 
-    // Repeat lesson 1 should not give duplicate XP
+    // repetir leccion 1 no debe otorgar xp duplicado
     const repeatResult = await repo.completeLesson("les-estado-1", 50);
     expect(repeatResult.isFirstCompletion).toBe(false);
     expect(repeatResult.xpEarned).toBe(0);
     expect(repeatResult.totalXp).toBe(50);
 
-    // Complete lesson 2 (50 XP) -> reaches 100 XP -> Level 2 ("Observador Cívico")
+    // completar leccion 2 con 50 xp alcanzando 100 xp para subir a nivel 2
     const result2 = await repo.completeLesson("les-elecciones-1", 50);
     expect(result2.totalXp).toBe(100);
 
@@ -68,16 +68,16 @@ describe("AprendeRepository", () => {
   });
 
   it("automatically unlocks Sibi Cat variants when user earns the required XP", async () => {
-    // Sibi Cat Constituyente requires 50 XP
-    // Sibi Cat Detective Cívico requires 100 XP
+    // sibi cat constituyente requiere 50 xp
+    // sibi cat detective civico requiere 100 xp
     const catsInitial = await repo.getAllSibiCats();
     const novatoCat = catsInitial.find((c) => c.id === "cat-novato");
     const constituyenteCat = catsInitial.find((c) => c.id === "cat-constituyente");
 
-    // Novato requires 0 XP, unlocks when reaching or evaluating
+    // novato requiere 0 xp se desbloquea al evaluar
     expect(constituyenteCat?.isUnlocked).toBe(false);
 
-    // Complete lesson with 60 XP
+    // completar leccion con 60 xp
     await repo.completeLesson("les-1", 60);
 
     const catsAfter60 = await repo.getAllSibiCats();
@@ -86,6 +86,6 @@ describe("AprendeRepository", () => {
     expect(constituyenteAfter?.unlockedAt).toBeDefined();
 
     const detectiveAfter = catsAfter60.find((c) => c.id === "cat-detective");
-    expect(detectiveAfter?.isUnlocked).toBe(false); // requires 100 XP
+    expect(detectiveAfter?.isUnlocked).toBe(false); // requiere 100 xp
   });
 });

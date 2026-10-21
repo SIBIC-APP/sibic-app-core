@@ -63,15 +63,15 @@ export default function BrujulaResultadoScreen() {
 
   const activeQuadrant = quadrants.find((q) => q.id === result.quadrantId);
 
-  // Map scores (-100 to 100) to percentage within container (0% to 100%)
-  // Economic: -100 (left) to +100 (right) -> (economic + 100) / 2
-  // Social: -100 (top, more liberal/civil) to +100 (bottom, more traditional/order) -> (social + 100) / 2
+  // mapear puntajes de menos 100 a mas 100 a porcentaje dentro del contenedor
+  // eje economico de menos 100 izquierda a mas 100 derecha
+  // eje social de menos 100 arriba a mas 100 abajo
   const dotXPercent = Math.max(5, Math.min(95, (result.scores.economic + 100) / 2));
   const dotYPercent = Math.max(5, Math.min(95, (result.scores.social + 100) / 2));
 
   return (
     <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: 20, paddingBottom: 60 }}>
-      {/* Title */}
+      {/* titulo */}
       <View className="mb-4 items-center">
         <Text className="text-xs font-bold text-primary uppercase tracking-widest">
           Balance Cívico Personal
@@ -84,46 +84,46 @@ export default function BrujulaResultadoScreen() {
         </Text>
       </View>
 
-      {/* 2D Compass Chart */}
+      {/* grafico 2d de la brujula */}
       <View className="items-center my-4">
-        {/* Top Label */}
+        {/* etiqueta superior */}
         <Text className="text-[10px] font-bold text-muted-foreground uppercase mb-1">
           ↑ Más Libertades y Garantías
         </Text>
 
         <View className="flex-row items-center">
-          {/* Left Label */}
+          {/* etiqueta izquierda */}
           <Text className="text-[10px] font-bold text-muted-foreground uppercase mr-1 w-12 text-right">
             ← Rol Social
           </Text>
 
-          {/* Compass Box */}
+          {/* caja de la brujula */}
           <View className="w-64 h-64 border-2 border-foreground/30 rounded-2xl relative overflow-hidden bg-card shadow-sm">
-            {/* Quadrant 1: Solidario y Garanticista (Top-Left) */}
+            {/* cuadrante 1 solidario y garanticista superior izquierdo */}
             <View className="absolute top-0 left-0 w-1/2 h-1/2 bg-[#FDE2E4] opacity-80 border-r border-b border-foreground/10 items-center justify-center p-1">
               <Text className="text-[9px] font-bold text-foreground/80 text-center">Solidario y Garanticista</Text>
             </View>
 
-            {/* Quadrant 2: Comunitario y Tradicional (Bottom-Left) */}
+            {/* cuadrante 2 comunitario y tradicional inferior izquierdo */}
             <View className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-[#DBE7FF] opacity-80 border-r border-foreground/10 items-center justify-center p-1">
               <Text className="text-[9px] font-bold text-foreground/80 text-center">Comunitario y Tradicional</Text>
             </View>
 
-            {/* Quadrant 3: Libre Mercado y Garanticista (Top-Right) */}
+            {/* cuadrante 3 libre mercado y garanticista superior derecho */}
             <View className="absolute top-0 right-0 w-1/2 h-1/2 bg-[#D9F3E1] opacity-80 border-b border-foreground/10 items-center justify-center p-1">
               <Text className="text-[9px] font-bold text-foreground/80 text-center">Libre Mercado y Garanticista</Text>
             </View>
 
-            {/* Quadrant 4: Libre Mercado e Institucional (Bottom-Right) */}
+            {/* cuadrante 4 libre mercado e institucional inferior derecho */}
             <View className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[#FFF1C2] opacity-80 items-center justify-center p-1">
               <Text className="text-[9px] font-bold text-foreground/80 text-center">Libre Mercado e Institucional</Text>
             </View>
 
-            {/* Axes Lines */}
+            {/* lineas de los ejes */}
             <View className="absolute top-0 bottom-0 left-1/2 w-[1.5px] bg-foreground/30 -ml-[0.75px]" />
             <View className="absolute left-0 right-0 top-1/2 h-[1.5px] bg-foreground/30 -mt-[0.75px]" />
 
-            {/* Position Marker */}
+            {/* marcador de posicion */}
             <View
               className="absolute w-5 h-5 -ml-2.5 -mt-2.5 rounded-full bg-primary border-2 border-white shadow-md items-center justify-center"
               style={{
@@ -135,19 +135,19 @@ export default function BrujulaResultadoScreen() {
             </View>
           </View>
 
-          {/* Right Label */}
+          {/* etiqueta derecha */}
           <Text className="text-[10px] font-bold text-muted-foreground uppercase ml-1 w-12 text-left">
             Libre Mercado →
           </Text>
         </View>
 
-        {/* Bottom Label */}
+        {/* etiqueta inferior */}
         <Text className="text-[10px] font-bold text-muted-foreground uppercase mt-1">
           ↓ Más Orden Institucional
         </Text>
       </View>
 
-      {/* Numerical Scores Card */}
+      {/* tarjeta de puntajes numericos */}
       <View className="flex-row justify-between bg-secondary/80 border border-border p-3.5 rounded-2xl mb-4">
         <View className="items-center flex-1 border-r border-border/80">
           <Text className="text-[11px] font-bold text-muted-foreground uppercase">Eje Económico</Text>
@@ -169,7 +169,7 @@ export default function BrujulaResultadoScreen() {
         </View>
       </View>
 
-      {/* Explanation Box */}
+      {/* caja de explicacion */}
       {activeQuadrant && (
         <View className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-sm">
           <Text className="text-base font-bold text-foreground mb-1.5">
@@ -184,7 +184,7 @@ export default function BrujulaResultadoScreen() {
         </View>
       )}
 
-      {/* Actions */}
+      {/* acciones */}
       <View className="space-y-2.5">
         <TouchableOpacity
           className="bg-primary py-3.5 rounded-xl items-center shadow-sm active:opacity-90 my-1"

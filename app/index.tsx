@@ -11,7 +11,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView className="flex-1 bg-background">
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 40 }}>
-        {/* Brand Header */}
+        {/* encabezado de marca */}
         <View className="mb-6 pt-2 flex-row items-center justify-between">
           <View className="flex-row items-center">
             <View className="w-10 h-10 rounded-xl bg-primary items-center justify-center mr-3 shadow-sm">
@@ -32,7 +32,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* User Progress Banner (Gamification) */}
+        {/* banner de progreso del usuario con gamificacion */}
         <View className="bg-secondary rounded-2xl p-4 mb-6 border border-border">
           <View className="flex-row items-center justify-between mb-2">
             <View className="flex-row items-center">
@@ -47,7 +47,7 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          {/* Progress bar */}
+          {/* barra de progreso */}
           <View className="w-full bg-border h-2 rounded-full mt-2 overflow-hidden">
             <View
               className="bg-primary h-full rounded-full"
@@ -59,12 +59,12 @@ export default function HomeScreen() {
           </Text>
         </View>
 
-        {/* Feature Cards Grid */}
+        {/* cuadricula de tarjetas de funcionalidades */}
         <Text className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">
           Funcionalidades activas
         </Text>
 
-        {/* 1. Aprende Card */}
+        {/* tarjeta de modulo aprende */}
         <TouchableOpacity
           className="bg-card border border-border rounded-2xl p-5 mb-4 shadow-sm active:opacity-90"
           onPress={() => router.push("/aprende")}
@@ -85,7 +85,7 @@ export default function HomeScreen() {
           </View>
         </TouchableOpacity>
 
-        {/* 2. Mi Brújula Card */}
+        {/* tarjeta de modulo mi brujula */}
         <TouchableOpacity
           className="bg-card border border-border rounded-2xl p-5 mb-4 shadow-sm active:opacity-90"
           onPress={() => router.push("/brujula")}
@@ -113,7 +113,7 @@ export default function HomeScreen() {
           </View>
         </TouchableOpacity>
 
-        {/* Local-first & Privacy Footer Notice */}
+        {/* aviso de privacidad y diseno local primero */}
         <View className="mt-4 p-4 rounded-xl bg-secondary/60 border border-border/80">
           <View className="flex-row items-center mb-1">
             <Text className="text-sm mr-2">🔒</Text>

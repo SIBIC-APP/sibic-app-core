@@ -1,36 +1,36 @@
-# Local environment and documentation
+# entorno local y documentacion
 SIBIC_APP.pdf
 SIBIC_DEV_PLAN.pdf
 
-# Dependencies
+# dependencias
 node_modules/
 .pnpm-store/
 
-# Expo
+# expo
 .expo/
 dist/
 web-build/
 
-# Native builds
+# compilaciones nativas
 ios/
 android/
 
-# Environment variables
+# variables de entorno
 .env
 .env*.local
 .env.local
 
-# Logs
+# registros de ejecucion
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Testing & Coverage
+# pruebas y cobertura
 coverage/
 *.lcov
 
-# IDEs
+# configuraciones de ides
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
@@ -38,6 +38,6 @@ coverage/
 *.swp
 *.swo
 
-# Temporary & cache
+# temporales y cache
 .DS_Store
 *.pem

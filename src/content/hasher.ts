@@ -1,7 +1,7 @@
 import * as Crypto from "expo-crypto";
 
 export async function calculateSha256(content: string): Promise<string> {
-  // If expo-crypto has digestStringAsync (mobile or mocked)
+  // si expo crypto tiene digeststringasync en movil o simulado
   if (Crypto.digestStringAsync) {
     try {
       return await Crypto.digestStringAsync(
@@ -9,11 +9,11 @@ export async function calculateSha256(content: string): Promise<string> {
         content
       );
     } catch {
-      // Fallback to standard web crypto
+      // respaldo con web crypto estandar
     }
   }
 
-  // Web Crypto API (supported in Node 18+ and modern browsers)
+  // api de web crypto compatible con node 18 y navegadores modernos
   if (typeof globalThis.crypto !== "undefined" && globalThis.crypto.subtle) {
     const encoder = new TextEncoder();
     const data = encoder.encode(content);
@@ -22,7 +22,7 @@ export async function calculateSha256(content: string): Promise<string> {
     return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
   }
 
-  // Node crypto fallback if available
+  // respaldo con el modulo crypto de node si esta disponible
   try {
     const nodeCrypto = await import("crypto");
     return nodeCrypto.createHash("sha256").update(content).digest("hex");

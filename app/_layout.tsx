@@ -20,13 +20,13 @@ export default function RootLayout() {
           getUserDatabase(),
         ]);
 
-        // Ensure embedded content packs (historia, brujula, aprende) are seeded
+        // asegurar que los paquetes embebidos historia brujula y aprende esten cargados
         await ensureEmbeddedSeeds(contentDb);
 
-        // Load user store from user.db
+        // cargar estado del usuario desde user db
         await useUserStore.getState().loadState(userDb);
 
-        // Initialize Supabase auth listener
+        // inicializar listener de autenticacion de supabase
         await useAuthStore.getState().initAuth();
 
         setIsReady(true);

@@ -18,7 +18,7 @@ export class BrujulaRepository {
   ) {}
 
   // -------------------------------------------------------------
-  // USER.DB: Stored result (100% strictly local)
+  // user db resultado guardado estrictamente local
   // -------------------------------------------------------------
   async saveResult(
     answers: Record<string, number>,
@@ -71,7 +71,7 @@ export class BrujulaRepository {
   }
 
   // -------------------------------------------------------------
-  // CONTENT.DB: Questions and Quadrants
+  // content db preguntas y cuadrantes
   // -------------------------------------------------------------
   async getQuestions(): Promise<BrujulaQuestionType[]> {
     if (!this.contentDb) return [];

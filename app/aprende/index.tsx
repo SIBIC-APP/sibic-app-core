@@ -50,7 +50,7 @@ export default function AprendeIndexScreen() {
 
   return (
     <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: 20, paddingBottom: 50 }}>
-      {/* Sibi Cats Showcase */}
+      {/* vitrina de sibi cats */}
       <View className="mb-6">
         <Text className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">
           Vitrina de Sibi Cats Desbloqueables
@@ -77,14 +77,14 @@ export default function AprendeIndexScreen() {
         </ScrollView>
       </View>
 
-      {/* Modules & Lessons */}
+      {/* modulos y lecciones */}
       <Text className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">
         Módulos Cívicos
       </Text>
 
       {modules.map((mod) => (
         <View key={mod.id} className="mb-6 bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
-          {/* Module Header */}
+          {/* encabezado de modulo */}
           <View className="p-4 bg-secondary/50 border-b border-border/80">
             <View className="flex-row items-center justify-between mb-1">
               <Text className="text-base font-bold text-foreground">{mod.title}</Text>
@@ -97,7 +97,7 @@ export default function AprendeIndexScreen() {
             <Text className="text-muted-foreground text-xs">{mod.description}</Text>
           </View>
 
-          {/* Lessons List */}
+          {/* lista de lecciones */}
           <View className="p-2">
             {mod.lessons.map((lesson) => {
               const isCompleted = completedSet.has(lesson.id);

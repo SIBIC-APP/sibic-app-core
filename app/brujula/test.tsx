@@ -27,7 +27,7 @@ export default function BrujulaTestScreen() {
         const data = await repo.getQuestions();
         setQuestions(data);
 
-        // Preload any existing answers if user previously took the test
+        // precargar respuestas previas si el usuario ya tomo el cuestionario
         const existing = await repo.getLatestResult();
         if (existing?.answers) {
           setAnswers(existing.answers);
@@ -77,7 +77,7 @@ export default function BrujulaTestScreen() {
       return;
     }
 
-    // Submit and calculate
+    // enviar y calcular
     setIsSubmitting(true);
     try {
       const calculation = calculateBrujulaScore(questions, answers);
@@ -100,7 +100,7 @@ export default function BrujulaTestScreen() {
 
   return (
     <View className="flex-1 bg-background">
-      {/* Progress header */}
+      {/* encabezado de progreso */}
       <View className="px-6 pt-4 pb-2 border-b border-border/80">
         <View className="flex-row items-center justify-between mb-2">
           <Text className="text-xs font-bold text-primary uppercase">
@@ -114,23 +114,23 @@ export default function BrujulaTestScreen() {
       </View>
 
       <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 100 }}>
-        {/* Topic Tag */}
+        {/* etiqueta de tema */}
         <View className="self-start bg-secondary px-3 py-1 rounded-full mb-3 border border-border">
           <Text className="text-xs font-bold text-primary">{currentQ.topic}</Text>
         </View>
 
-        {/* Question Text */}
+        {/* texto de la pregunta */}
         <Text className="text-xl font-bold text-foreground leading-7 mb-3">
           {currentQ.text}
         </Text>
 
-        {/* Context box */}
+        {/* caja de contexto */}
         <View className="bg-muted/30 border border-border/80 p-3.5 rounded-xl mb-6">
           <Text className="text-[11px] font-bold text-foreground mb-1">Contexto nacional:</Text>
           <Text className="text-xs text-muted-foreground leading-5">{currentQ.context}</Text>
         </View>
 
-        {/* Likert Options */}
+        {/* opciones de escala */}
         <Text className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">
           Selecciona tu posición:
         </Text>
@@ -162,7 +162,7 @@ export default function BrujulaTestScreen() {
         })}
       </ScrollView>
 
-      {/* Navigation Footer */}
+      {/* pie de navegacion */}
       <View className="absolute bottom-0 left-0 right-0 bg-background/95 border-t border-border p-4 flex-row items-center justify-between">
         <TouchableOpacity
           disabled={isFirst}

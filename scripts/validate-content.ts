@@ -52,7 +52,7 @@ export function validateAllContent(contentDir: string = path.resolve(__dirname, 
         `[validate-content] Pack "${packRef.id}" v${parsed.version} valid (${parsed.periods.length} periods, ${parsed.events.length} events, ${parsed.sources.length} sources)`
       );
 
-      // Verify that every event has an existing source or period
+      // verificar que cada evento tenga una fuente o periodo existente
       const sourceIds = new Set(parsed.sources.map((s) => s.id));
       const periodIds = new Set(parsed.periods.map((p) => p.id));
 

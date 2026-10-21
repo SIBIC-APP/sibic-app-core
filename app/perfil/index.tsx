@@ -28,7 +28,7 @@ export default function PerfilScreen() {
       const userDb = await getUserDatabase();
       const success = await syncProgress(userDb);
       if (success) {
-        // Refresh local store
+        // actualizar almacen local
         await useUserStore.getState().loadState(userDb);
         setStatusMessage("¡Progreso respaldado con éxito en la nube!");
       }
@@ -58,7 +58,7 @@ export default function PerfilScreen() {
   return (
     <SafeAreaView className="flex-1 bg-background">
       <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 60 }}>
-        {/* User Card */}
+        {/* tarjeta de usuario */}
         <View className="items-center bg-card border border-border rounded-3xl p-6 mb-6 shadow-sm">
           <View className="w-20 h-20 rounded-full bg-secondary items-center justify-center mb-3 border border-border">
             <Text className="text-4xl">{user ? "👤" : "🐱"}</Text>
@@ -79,7 +79,7 @@ export default function PerfilScreen() {
           )}
         </View>
 
-        {/* Local Progress Summary */}
+        {/* resumen de progreso local */}
         <View className="bg-secondary/60 border border-border rounded-2xl p-4 mb-6">
           <Text className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">
             Progreso en este dispositivo
@@ -102,7 +102,7 @@ export default function PerfilScreen() {
           </View>
         </View>
 
-        {/* Cloud Sync Section */}
+        {/* seccion de sincronizacion en la nube */}
         {user ? (
           <View className="bg-card border border-border rounded-2xl p-5 mb-6 shadow-sm">
             <Text className="text-base font-bold text-foreground mb-1">
@@ -178,7 +178,7 @@ export default function PerfilScreen() {
           </View>
         )}
 
-        {/* Privacy by Design Notice */}
+        {/* aviso de privacidad por diseno */}
         <View className="bg-secondary/40 border border-border p-4 rounded-2xl mb-6">
           <View className="flex-row items-center mb-1">
             <Text className="text-sm mr-2">🛡️</Text>
@@ -189,7 +189,7 @@ export default function PerfilScreen() {
           </Text>
         </View>
 
-        {/* Danger Zone: Account Deletion (App Store / Play Store Requirement) */}
+        {/* zona de peligro eliminacion de cuenta segun requisitos de tiendas */}
         {user && (
           <View className="border-t border-border pt-4">
             <Text className="text-xs font-bold text-destructive uppercase tracking-wider mb-2">

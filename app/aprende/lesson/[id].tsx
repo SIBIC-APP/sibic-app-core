@@ -86,7 +86,7 @@ export default function LessonDetailScreen() {
 
   return (
     <ScrollView className="flex-1 bg-background" contentContainerStyle={{ padding: 20, paddingBottom: 60 }}>
-      {/* Lesson Header */}
+      {/* encabezado de leccion */}
       <View className="mb-5">
         <Text className="text-2xl font-extrabold text-foreground">{lesson.title}</Text>
         <Text className="text-muted-foreground text-sm mt-1">{lesson.summary}</Text>
@@ -98,7 +98,7 @@ export default function LessonDetailScreen() {
         </View>
       </View>
 
-      {/* Content Blocks */}
+      {/* bloques de contenido */}
       <View className="mb-8 space-y-4">
         {lesson.blocks.map((block, idx) => {
           if (block.type === "callout") {
@@ -126,7 +126,7 @@ export default function LessonDetailScreen() {
         })}
       </View>
 
-      {/* Quiz Section */}
+      {/* seccion de cuestionario */}
       {lesson.quiz.length > 0 && (
         <View className="border-t border-border pt-6 mb-6">
           <Text className="text-lg font-bold text-foreground mb-4">Comprobación de Conocimiento</Text>
@@ -173,7 +173,7 @@ export default function LessonDetailScreen() {
         </View>
       )}
 
-      {/* Complete Button */}
+      {/* boton de finalizar */}
       {isCompleted ? (
         <View className="bg-success/15 border border-success/30 rounded-2xl p-4 items-center">
           <Text className="text-2xl mb-1">🎉</Text>

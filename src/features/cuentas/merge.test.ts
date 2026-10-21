@@ -15,9 +15,9 @@ describe("Cloud Progress Merge Engine (Fase 3)", () => {
     };
 
     const remoteSnapshot: ProgressSnapshot = {
-      totalXp: 180, // Higher XP
-      completedLessons: ["les-elecciones-1", "les-desinfo-1"], // Contains les-desinfo-1
-      unlockedCats: ["cat-constituyente", "cat-detective"],   // Contains cat-detective
+      totalXp: 180, // mayor cantidad de xp
+      completedLessons: ["les-elecciones-1", "les-desinfo-1"], // contiene les-desinfo-1
+      unlockedCats: ["cat-constituyente", "cat-detective"],   // contiene cat-detective
       savedItems: [
         { kind: "propuesta", itemId: "prop-1", savedAt: "2026-10-20T12:00:00Z" },
         { kind: "candidato", itemId: "cand-42", savedAt: "2026-10-20T11:00:00Z" },
@@ -27,25 +27,25 @@ describe("Cloud Progress Merge Engine (Fase 3)", () => {
 
     const merged = mergeProgressSnapshots(localSnapshot, remoteSnapshot);
 
-    // Max XP
+    // maximo xp
     expect(merged.totalXp).toBe(180);
 
-    // Union of completed lessons
+    // union de lecciones completadas
     expect(merged.completedLessons).toHaveLength(3);
     expect(merged.completedLessons).toContain("les-estado-1");
     expect(merged.completedLessons).toContain("les-elecciones-1");
     expect(merged.completedLessons).toContain("les-desinfo-1");
 
-    // Union of unlocked cats
+    // union de gatos desbloqueados
     expect(merged.unlockedCats).toHaveLength(3);
     expect(merged.unlockedCats).toContain("cat-novato");
     expect(merged.unlockedCats).toContain("cat-constituyente");
     expect(merged.unlockedCats).toContain("cat-detective");
 
-    // Deduplicated saved items
+    // elementos guardados deduplicados
     expect(merged.savedItems).toHaveLength(2);
     const prop1 = merged.savedItems.find((i) => i.itemId === "prop-1");
-    expect(prop1?.savedAt).toBe("2026-10-20T12:00:00Z"); // latest timestamp kept
+    expect(prop1?.savedAt).toBe("2026-10-20T12:00:00Z"); // conserva la marca de tiempo mas reciente
   });
 
   it("handles empty local or empty remote snapshots safely", () => {

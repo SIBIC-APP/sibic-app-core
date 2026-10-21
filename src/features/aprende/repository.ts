@@ -23,7 +23,7 @@ export class AprendeRepository {
   ) {}
 
   // -------------------------------------------------------------
-  // USER.DB: Progress and Cat unlocks
+  // user db progreso y desbloqueos de sibi cat
   // -------------------------------------------------------------
   async getUserProgress(): Promise<UserAprendeProgress> {
     const progressRows = await this.userDb.all<{ lesson_id: string; xp: number }>(
@@ -52,7 +52,7 @@ export class AprendeRepository {
   ): Promise<CompleteLessonResult> {
     const now = new Date().toISOString();
 
-    // Check if already completed
+    // verificar si ya fue completada
     const existing = await this.userDb.getFirst<{ lesson_id: string }>(
       "SELECT lesson_id FROM progress WHERE lesson_id = ?;",
       [lessonId]
@@ -67,13 +67,13 @@ export class AprendeRepository {
       );
     }
 
-    // Get current total XP
+    // obtener total de xp actual
     const progressRows = await this.userDb.all<{ xp: number }>(
       "SELECT xp FROM progress;"
     );
     const totalXp = progressRows.reduce((sum, r) => sum + r.xp, 0);
 
-    // Evaluate newly unlocked Sibi Cats
+    // evaluar nuevos sibi cats desbloqueados
     const newlyUnlockedCats: SibiCatVariantType[] = [];
 
     if (this.contentDb) {
@@ -119,7 +119,7 @@ export class AprendeRepository {
   }
 
   // -------------------------------------------------------------
-  // CONTENT.DB: Modules, Lessons and Cats
+  // content db modulos lecciones y gatos
   // -------------------------------------------------------------
   async getModulesWithLessons(): Promise<ModuleWithLessons[]> {
     if (!this.contentDb) return [];

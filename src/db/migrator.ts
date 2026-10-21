@@ -11,7 +11,7 @@ export async function runMigrations(
   migrations: Migration[],
   dbLabel: string
 ): Promise<number> {
-  // Read current version
+  // leer version actual
   const versionRow = await db.getFirst<{ user_version: number }>("PRAGMA user_version;");
   const currentVersion = versionRow?.user_version ?? 0;
 

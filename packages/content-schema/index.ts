@@ -62,7 +62,7 @@ export const Proposal = z.object({
 });
 
 // -------------------------------------------------------------
-// HISTORIA PACK SCHEMAS
+// esquemas del paquete de historia
 // -------------------------------------------------------------
 export const HistoryPeriod = z.object({
   id: z.string().min(1),
@@ -94,7 +94,7 @@ export const HistoryPack = z.object({
 });
 
 // -------------------------------------------------------------
-// MI BRÚJULA PACK SCHEMAS
+// esquemas del paquete de mi brujula
 // -------------------------------------------------------------
 export const BrujulaDimension = z.object({
   id: z.string().min(1),
@@ -133,7 +133,7 @@ export const BrujulaPack = z.object({
 });
 
 // -------------------------------------------------------------
-// APRENDE PACK SCHEMAS
+// esquemas del paquete de aprende
 // -------------------------------------------------------------
 export const SibiCatVariant = z.object({
   id: z.string().min(1),
@@ -191,7 +191,7 @@ export const AprendePack = z.object({
   sibiCats: z.array(SibiCatVariant),
 });
 
-// Types
+// tipos inferidos
 export type PackRefType = z.infer<typeof PackRef>;
 export type ManifestType = z.infer<typeof Manifest>;
 export type SourceType = z.infer<typeof Source>;

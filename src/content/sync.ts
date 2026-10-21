@@ -15,7 +15,7 @@ export async function syncContent(
   const skippedPacks: string[] = [];
   const errors: string[] = [];
 
-  // 1. Fetch manifest
+  // 1. obtener el manifiesto
   let manifest;
   try {
     manifest = await fetchManifest(manifestUrl, timeoutMs, fetchFn);
@@ -30,7 +30,7 @@ export async function syncContent(
     };
   }
 
-  // 2. Validate minAppVersion
+  // 2. validar version minima de la aplicacion
   if (isAppOutdated(currentAppVersion, manifest.minAppVersion)) {
     return {
       success: false,
@@ -45,7 +45,7 @@ export async function syncContent(
     };
   }
 
-  // 3. Compare with local applied packs
+  // 3. comparar con paquetes locales aplicados
   const localPacks = await getLocalPacks(db);
   const packsToUpdate = filterPacksToUpdate(manifest, localPacks);
 
@@ -60,10 +60,10 @@ export async function syncContent(
     };
   }
 
-  // 4. Download and apply each outdated pack
+  // 4. descargar y aplicar cada paquete desactualizado
   for (const packRef of packsToUpdate) {
     try {
-      // Resolve URL (relative to manifest or absolute)
+      // resolver url relativa al manifiesto o absoluta
       const packUrl = packRef.url.startsWith("http")
         ? packRef.url
         : new URL(packRef.url, manifestUrl).toString();
@@ -83,7 +83,7 @@ export async function syncContent(
 
       const rawText = await response.text();
 
-      // Check SHA-256
+      // verificar hash sha 256
       const calculatedHash = await calculateSha256(rawText);
       if (calculatedHash !== packRef.sha256) {
         throw new Error(
@@ -91,10 +91,10 @@ export async function syncContent(
         );
       }
 
-      // Parse JSON
+      // parsear json
       const json = JSON.parse(rawText);
 
-      // Validate schema according to domain
+      // validar esquema segun el dominio del paquete
       let validatedData: unknown;
       if (packRef.id === "historia") {
         const parsed = HistoryPack.safeParse(json);
@@ -124,7 +124,7 @@ export async function syncContent(
         throw new Error(`Unknown pack domain: "${packRef.id}"`);
       }
 
-      // Apply in SQLite transaction with automatic rollback on error
+      // aplicar en transaccion sqlite con rollback automatico en caso de error
       await applyPack(db, {
         packId: packRef.id,
         version: packRef.version,

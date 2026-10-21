@@ -2,14 +2,14 @@ import { BrujulaQuestionType } from "@content-schema";
 import { BrujulaCalculationResult, BrujulaScores, QuadrantId } from "./types";
 
 /**
- * Pure calculation function for Mi Brújula.
- * Maps 1..5 Likert answers into -100..+100 score on Economic & Social axes.
+ * funcion de calculo puro para mi brujula
+ * mapea respuestas likert del 1 al 5 a un puntaje de menos 100 a mas 100 en los ejes economico y social
  *
- * 1 (Totalmente en desacuerdo) -> -2
- * 2 (En desacuerdo)            -> -1
- * 3 (Neutral)                  ->  0
- * 4 (De acuerdo)               -> +1
- * 5 (Totalmente de acuerdo)    -> +2
+ * 1 totalmente en desacuerdo equivale a menos 2
+ * 2 en desacuerdo            equivale a menos 1
+ * 3 neutral                  equivale a 0
+ * 4 de acuerdo               equivale a mas 1
+ * 5 totalmente de acuerdo    equivale a mas 2
  */
 export function calculateBrujulaScore(
   questions: BrujulaQuestionType[],
@@ -37,13 +37,13 @@ export function calculateBrujulaScore(
     const ecoWeight = q.weights.economic ?? 0;
     const socWeight = q.weights.social ?? 0;
 
-    // Track total potential weight on each axis
+    // registrar peso maximo posible en cada eje
     ecoMaxPossible += Math.abs(ecoWeight) * 2;
     socMaxPossible += Math.abs(socWeight) * 2;
 
     if (typeof rawAnswer === "number" && rawAnswer >= 1 && rawAnswer <= 5) {
       completedCount++;
-      const normalizedScore = rawAnswer - 3; // -2, -1, 0, 1, 2
+      const normalizedScore = rawAnswer - 3; // menos 2, menos 1, 0, 1, 2
       ecoSum += normalizedScore * ecoWeight;
       socSum += normalizedScore * socWeight;
     }
@@ -52,7 +52,7 @@ export function calculateBrujulaScore(
   const rawEconomic = ecoMaxPossible > 0 ? (ecoSum / ecoMaxPossible) * 100 : 0;
   const rawSocial = socMaxPossible > 0 ? (socSum / socMaxPossible) * 100 : 0;
 
-  // Round to nearest integer and clamp between -100 and 100
+  // redondear al entero mas cercano y limitar entre menos 100 y 100
   const economic = Math.max(-100, Math.min(100, Math.round(rawEconomic)));
   const social = Math.max(-100, Math.min(100, Math.round(rawSocial)));
 
@@ -71,13 +71,13 @@ export function determineQuadrant(scores: BrujulaScores): QuadrantId {
   const { economic, social } = scores;
 
   if (economic <= 0 && social <= 0) {
-    return "q1"; // Solidario y Garanticista (Pastel #FDE2E4)
+    return "q1"; // solidario y garanticista color pastel #fde2e4
   }
   if (economic <= 0 && social > 0) {
-    return "q2"; // Comunitario y Tradicional (Pastel #DBE7FF)
+    return "q2"; // comunitario y tradicional color pastel #dbe7ff
   }
   if (economic > 0 && social <= 0) {
-    return "q3"; // Libre Mercado y Garanticista (Pastel #D9F3E1)
+    return "q3"; // libre mercado y garanticista color pastel #d9f3e1
   }
-  return "q4"; // Libre Mercado e Institucional (Pastel #FFF1C2)
+  return "q4"; // libre mercado e institucional color pastel #fff1c2
 }

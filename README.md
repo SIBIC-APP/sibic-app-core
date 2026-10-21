@@ -81,16 +81,16 @@ Plataforma digital interactiva, accesible y neutral diseñada para acercar la in
 Inicia el entorno de desarrollo local con Metro Bundler:
 
 ```bash
-# Iniciar servidor interactivo de desarrollo (Expo CLI)
+# iniciar servidor interactivo de desarrollo con expo cli
 pnpm start
 
-# Ejecutar directamente en Web (abre en http://localhost:8081)
+# ejecutar directamente en web abriendo en localhost
 pnpm run web
 
-# Ejecutar en emulador / dispositivo Android
+# ejecutar en emulador o dispositivo android
 pnpm run android
 
-# Ejecutar en simulador iOS (requiere macOS y Xcode)
+# ejecutar en simulador ios requiriendo macos y xcode
 pnpm run ios
 ```
 
@@ -102,10 +102,10 @@ pnpm run ios
 SIBIC exporta una Single Page Application estática lista para desplegarse en Cloudflare Pages, Netlify, Vercel o EAS Hosting:
 
 ```bash
-# Compila y exporta la aplicación web optimizada a la carpeta dist/
+# compila y exporta la aplicacion web optimizada a la carpeta dist
 pnpm exec expo export --platform web
 
-# Previsualizar el build de producción localmente
+# previsualizar el build de produccion localmente
 pnpm dlx serve dist
 ```
 
@@ -115,13 +115,13 @@ pnpm dlx serve dist
 Para compilar los instalables nativos de iOS y Android:
 
 ```bash
-# Iniciar sesión en Expo Application Services
+# iniciar sesion en expo application services
 pnpm dlx eas-cli login
 
-# Compilar instalable de Android (APK / AAB para Google Play)
+# compilar instalable de android apk o aab para google play
 pnpm dlx eas build --platform android --profile production
 
-# Compilar instalable de iOS (IPA para TestFlight / App Store)
+# compilar instalable de ios ipa para testflight o app store
 pnpm dlx eas build --platform ios --profile production
 ```
 
@@ -132,16 +132,16 @@ pnpm dlx eas build --platform ios --profile production
 El proyecto cuenta con un conjunto integral de pruebas automatizadas que se validan en cada Pull Request mediante GitHub Actions:
 
 ```bash
-# Ejecutar verificación de tipos estricta con TypeScript
+# ejecutar verificacion de tipos estricta con typescript
 pnpm run typecheck
 
-# Ejecutar la suite completa de pruebas unitarias con Vitest
+# ejecutar la suite completa de pruebas unitarias con vitest
 pnpm test
 
-# Ejecutar pruebas en modo observador (watch)
+# ejecutar pruebas en modo observador watch
 pnpm run test:watch
 
-# Validar integridad criptográfica y esquemas Zod de los packs de contenido
+# validar integridad criptografica y esquemas zod de los paquetes de contenido
 pnpm run content:validate
 ```
 

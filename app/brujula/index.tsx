@@ -10,7 +10,7 @@ export default function BrujulaIndexScreen() {
   return (
     <SafeAreaView className="flex-1 bg-background">
       <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 50 }}>
-        {/* Hero */}
+        {/* seccion principal */}
         <View className="items-center my-4">
           <View className="w-16 h-16 rounded-3xl bg-primary/10 items-center justify-center mb-4">
             <Text className="text-3xl">🧭</Text>
@@ -21,7 +21,7 @@ export default function BrujulaIndexScreen() {
           </Text>
         </View>
 
-        {/* Existing Result Badge */}
+        {/* insignia de resultado existente */}
         {brujulaResult && (
           <View className="bg-secondary p-4 rounded-2xl border border-primary/20 my-3">
             <View className="flex-row items-center justify-between mb-1">
@@ -42,7 +42,7 @@ export default function BrujulaIndexScreen() {
           </View>
         )}
 
-        {/* Guarantees Checklist */}
+        {/* lista de garantias */}
         <View className="bg-card border border-border rounded-2xl p-4 my-3 space-y-3">
           <Text className="text-xs font-bold text-foreground uppercase tracking-wider mb-1">
             Garantías Institucionales SIBIC
@@ -76,7 +76,7 @@ export default function BrujulaIndexScreen() {
           </View>
         </View>
 
-        {/* Action Button */}
+        {/* boton de accion */}
         <TouchableOpacity
           className="bg-primary py-4 rounded-2xl items-center shadow-sm mt-4 active:opacity-90"
           onPress={() => router.push("/brujula/test")}

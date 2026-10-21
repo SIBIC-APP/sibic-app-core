@@ -5,9 +5,9 @@ import { ProgressSnapshot, SavedItemRecord } from "./types";
 
 export class AccountSyncService {
   /**
-   * Reads current local snapshot from user.db.
-   * Notice: Strictly reads only progress, unlocked_cat and saved_item.
-   * Mi Brújula is intentionally excluded for privacy.
+   * lee la instantanea local actual desde user db
+   * nota: unicamente lee progress, unlocked cat y saved item
+   * mi brujula se excluye intencionalmente por privacidad
    */
   static async readLocalSnapshot(userDb: DatabaseAdapter): Promise<ProgressSnapshot> {
     const progressRows = await userDb.all<{ lesson_id: string; xp: number }>(
@@ -39,7 +39,7 @@ export class AccountSyncService {
   }
 
   /**
-   * Writes a merged snapshot back to local user.db inside an atomic transaction.
+   * escribe una instantanea fusionada en user db local dentro de una transaccion atomica
    */
   static async writeMergedSnapshot(
     userDb: DatabaseAdapter,
@@ -48,7 +48,7 @@ export class AccountSyncService {
     await userDb.transaction(async (tx) => {
       const now = new Date().toISOString();
 
-      // Upsert completed lessons
+      // actualizar o insertar lecciones completadas
       for (const lessonId of merged.completedLessons) {
         const existing = await tx.getFirst<{ lesson_id: string }>(
           "SELECT lesson_id FROM progress WHERE lesson_id = ?;",
@@ -57,12 +57,12 @@ export class AccountSyncService {
         if (!existing) {
           await tx.run(
             "INSERT INTO progress (lesson_id, completed_at, xp) VALUES (?, ?, ?);",
-            [lessonId, now, 50] // default base reward
+            [lessonId, now, 50] // recompensa base por defecto
           );
         }
       }
 
-      // Upsert unlocked cats
+      // actualizar o insertar gatos desbloqueados
       for (const catId of merged.unlockedCats) {
         const existing = await tx.getFirst<{ cat_id: string }>(
           "SELECT cat_id FROM unlocked_cat WHERE cat_id = ?;",
@@ -76,7 +76,7 @@ export class AccountSyncService {
         }
       }
 
-      // Upsert saved items
+      // actualizar o insertar elementos guardados
       for (const item of merged.savedItems) {
         await tx.run(
           `INSERT OR REPLACE INTO saved_item (kind, item_id, saved_at)
@@ -88,8 +88,8 @@ export class AccountSyncService {
   }
 
   /**
-   * Syncs local progress with Supabase.
-   * Algorithm: Max(XP), Union(Lessons), Union(Cats), Union(Saved).
+   * sincroniza el progreso local con supabase
+   * algoritmo: maximo de xp y union de lecciones, gatos y elementos guardados
    */
   static async syncWithSupabase(
     client: SupabaseClient,
@@ -99,7 +99,7 @@ export class AccountSyncService {
     try {
       const local = await this.readLocalSnapshot(userDb);
 
-      // 1. Fetch remote snapshot
+      // 1. obtener instantanea remota
       const { data: remoteData, error: fetchError } = await client
         .from("progress_snapshots")
         .select("*")
@@ -113,7 +113,7 @@ export class AccountSyncService {
       let mergedSnapshot: ProgressSnapshot;
 
       if (!remoteData) {
-        // No remote snapshot yet: upload local as initial
+        // no existe instantanea remota todavia: subir estado local inicial
         mergedSnapshot = local;
         const { error: insertError } = await client
           .from("progress_snapshots")
@@ -130,7 +130,7 @@ export class AccountSyncService {
           throw new Error(`Failed to upload initial snapshot: ${insertError.message}`);
         }
       } else {
-        // Remote snapshot exists: perform mathematical set union
+        // existe instantanea remota: ejecutar union matematica de conjuntos
         const remoteSnapshot: ProgressSnapshot = {
           totalXp: remoteData.total_xp,
           completedLessons: remoteData.completed_lessons ?? [],
@@ -141,7 +141,7 @@ export class AccountSyncService {
 
         mergedSnapshot = mergeProgressSnapshots(local, remoteSnapshot);
 
-        // Update remote with merged snapshot
+        // actualizar servidor remoto con instantanea fusionada
         const { error: updateError } = await client
           .from("progress_snapshots")
           .update({
@@ -157,7 +157,7 @@ export class AccountSyncService {
           throw new Error(`Failed to update cloud snapshot: ${updateError.message}`);
         }
 
-        // Apply merged snapshot back into local user.db
+        // aplicar instantanea fusionada de vuelta en user db local
         await this.writeMergedSnapshot(userDb, mergedSnapshot);
       }
 
@@ -173,7 +173,7 @@ export class AccountSyncService {
   }
 
   /**
-   * Deletes the user account and all remote records.
+   * elimina la cuenta de usuario y todos los registros remotos
    */
   static async deleteAccount(
     client: SupabaseClient

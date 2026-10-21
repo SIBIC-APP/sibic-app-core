@@ -1,8 +1,8 @@
 -- =============================================================================
--- SIBIC Supabase Schema Migration: Profiles & Progress Snapshots (Fase 3)
+-- migracion del esquema de supabase perfiles y respaldo de progreso fase 3
 -- =============================================================================
 
--- 1. PROFILES TABLE
+-- 1. tabla de perfiles
 CREATE TABLE IF NOT EXISTS public.profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   display_name TEXT,
@@ -34,8 +34,8 @@ CREATE POLICY "Users can delete their own profile"
   FOR DELETE
   USING (auth.uid() = id);
 
--- 2. PROGRESS SNAPSHOTS TABLE
--- Privacidad por diseño: NUNCA almacena datos u opiniones de Mi Brújula
+-- 2. tabla de instantaneas de progreso
+-- privacidad por diseno: nunca almacena datos u opiniones de mi brujula
 CREATE TABLE IF NOT EXISTS public.progress_snapshots (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
@@ -68,7 +68,7 @@ CREATE POLICY "Users can delete their own progress snapshot"
   FOR DELETE
   USING (auth.uid() = user_id);
 
--- 3. TRIGGER: Auto-create profile on new user signup
+-- 3. disparador para creacion automatica de perfil al registrarse
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -87,11 +87,11 @@ CREATE OR REPLACE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
--- 4. FUNCTION: Delete User Account (App Store & Play Store Compliance)
+-- 4. funcion para eliminar cuenta de usuario segun politicas de tiendas
 CREATE OR REPLACE FUNCTION public.delete_user_account()
 RETURNS VOID AS $$
 BEGIN
-  -- Cascades to public.profiles and public.progress_snapshots
+  -- eliminacion en cascada hacia perfiles y respaldos de progreso
   DELETE FROM auth.users WHERE id = auth.uid();
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;

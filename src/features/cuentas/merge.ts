@@ -1,11 +1,11 @@
 import { ProgressSnapshot, SavedItemRecord } from "./types";
 
 /**
- * Merges local and remote progress snapshots according to SIBIC Dev Plan (Section 4.3):
- * - XP: Math.max(local, remote)
- * - Sets: Set union (completed lessons, unlocked Sibi Cats)
- * - Saved items: Deduplicated union by (kind, itemId)
- * - Privacidad por diseño: NUNCA contiene ni toca datos de Mi Brújula
+ * fusiona instantaneas de progreso local y remoto segun plan de desarrollo seccion 4.3
+ * - xp: maximo entre local y remoto
+ * - conjuntos: union de conjuntos de lecciones completadas y sibi cats desbloqueados
+ * - elementos guardados: union deduplicada por tipo y id de elemento
+ * - privacidad por diseno: nunca contiene ni toca datos de mi brujula
  */
 export function mergeProgressSnapshots(
   local: ProgressSnapshot,
@@ -21,7 +21,7 @@ export function mergeProgressSnapshots(
     new Set([...(local.unlockedCats ?? []), ...(remote.unlockedCats ?? [])])
   );
 
-  // Deduplicate saved items by kind:itemId
+  // deduplicar elementos guardados por clave de tipo y elemento
   const savedItemsMap = new Map<string, SavedItemRecord>();
 
   for (const item of local.savedItems ?? []) {

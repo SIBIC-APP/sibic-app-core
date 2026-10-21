@@ -5,7 +5,7 @@ export const contentMigrations: Migration[] = [
     version: 1,
     name: "001_initial_content_schema",
     up: async (db) => {
-      // Applied packs tracking
+      // seguimiento de paquetes aplicados
       await db.exec(`
         CREATE TABLE IF NOT EXISTS applied_pack (
           id TEXT PRIMARY KEY,
@@ -82,7 +82,7 @@ export const contentMigrations: Migration[] = [
         );
       `);
 
-      // FTS5 Virtual Table for Proposal search
+      // tabla virtual fts5 para busqueda de propuestas
       try {
         await db.exec(`
           CREATE VIRTUAL TABLE IF NOT EXISTS proposal_fts USING fts5(
@@ -100,7 +100,7 @@ export const contentMigrations: Migration[] = [
     name: "002_aprende_and_brujula_schema",
     up: async (db) => {
       await db.exec(`
-        -- Aprende tables
+        -- tablas de aprende
         CREATE TABLE IF NOT EXISTS aprende_module (
           id TEXT PRIMARY KEY,
           title TEXT NOT NULL,
@@ -130,7 +130,7 @@ export const contentMigrations: Migration[] = [
           badge TEXT NOT NULL
         );
 
-        -- Mi Brújula tables
+        -- tablas de mi brujula
         CREATE TABLE IF NOT EXISTS brujula_dimension (
           id TEXT PRIMARY KEY,
           name TEXT NOT NULL,

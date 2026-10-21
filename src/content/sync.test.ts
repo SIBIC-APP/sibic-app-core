@@ -86,7 +86,7 @@ describe("Content Sync Engine", () => {
     expect(result.success).toBe(true);
     expect(result.appliedPacks).toContain("historia");
 
-    // Verify DB insertion
+    // verificar insercion en base de datos
     const periods = await db.all("SELECT * FROM history_period;");
     expect(periods).toHaveLength(1);
     expect(periods[0].title).toBe("Período Democrático");
@@ -109,7 +109,7 @@ describe("Content Sync Engine", () => {
           id: "historia",
           version: 1,
           url: "https://cdn.sibic.gt/historia.v1.json",
-          sha256: "0000000000000000000000000000000000000000000000000000000000000000", // Tampered hash
+          sha256: "0000000000000000000000000000000000000000000000000000000000000000", // hash alterado
           bytes: Buffer.byteLength(rawText),
         },
       ],
@@ -131,13 +131,13 @@ describe("Content Sync Engine", () => {
     expect(result.success).toBe(false);
     expect(result.errors[0]).toContain("Checksum mismatch");
 
-    // DB should remain empty
+    // la base de datos debe permanecer vacia
     const periods = await db.all("SELECT * FROM history_period;");
     expect(periods).toHaveLength(0);
   });
 
   it("rolls back atomically and keeps previous data if pack schema is invalid", async () => {
-    // First, populate valid v1 data
+    // primero poblar datos validos de version 1
     const rawTextV1 = JSON.stringify(sampleHistoryPack);
     const hashV1 = await calculateSha256(rawTextV1);
     const manifestV1 = {
@@ -168,11 +168,11 @@ describe("Content Sync Engine", () => {
       fetchFn: mockFetchV1,
     });
 
-    // Now try to sync corrupted v2 pack (missing required fields in schema)
+    // intentar sincronizar paquete corrupto de version 2 con campos faltantes en el esquema
     const corruptedPack = {
       packId: "historia",
       version: 2,
-      periods: [{ invalidField: 123 }], // Fails Zod HistoryPack schema
+      periods: [{ invalidField: 123 }], // falla esquema zod de paquete historia
     };
     const rawTextV2 = JSON.stringify(corruptedPack);
     const hashV2 = await calculateSha256(rawTextV2);
@@ -207,7 +207,7 @@ describe("Content Sync Engine", () => {
     expect(result.success).toBe(false);
     expect(result.errors[0]).toContain("Schema validation failed");
 
-    // Previous v1 data must remain completely intact!
+    // los datos previos de version 1 deben permanecer intactos
     const periods = await db.all("SELECT * FROM history_period;");
     expect(periods).toHaveLength(1);
     expect(periods[0].title).toBe("Período Democrático");
@@ -221,7 +221,7 @@ describe("Content Sync Engine", () => {
   it("halts and requests app update when minAppVersion > currentAppVersion", async () => {
     const manifest = {
       schemaVersion: 1,
-      minAppVersion: "2.0.0", // Greater than installed "1.0.0"
+      minAppVersion: "2.0.0", // mayor a la version instalada 1.0.0
       generatedAt: "2026-10-20T00:00:00Z",
       packs: [],
     };

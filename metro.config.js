@@ -3,8 +3,7 @@ const { withNativeWind } = require("nativewind/metro");
 
 const config = getDefaultConfig(__dirname);
 
-// Allow Metro to bundle .wasm files (required by expo-sqlite on web)
+// permite a metro empaquetar archivos wasm requeridos por expo sqlite en web
 config.resolver.assetExts.push("wasm");
 
 module.exports = withNativeWind(config, { input: "./src/global.css" });
-

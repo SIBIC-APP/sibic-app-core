@@ -59,7 +59,7 @@ describe("BrujulaRepository", () => {
     expect(saved?.answers["q-eco-1"]).toBe(5);
     expect(saved?.takenAt).toBeDefined();
 
-    // Clear result
+    // limpiar resultado
     await repo.clearResult();
     const afterClear = await repo.getLatestResult();
     expect(afterClear).toBeNull();

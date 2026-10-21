@@ -1,9 +1,9 @@
-// @ts-ignore
-globalThis.__DEV__ = true;
+// define la variable dev en el entorno global
+(globalThis as unknown as { __DEV__: boolean }).__DEV__ = true;
 
 import { vi } from "vitest";
 
-// Common Expo and React Native mocks for Vitest
+// simulaciones comunes de expo y react native para vitest
 vi.mock("expo-crypto", () => {
   const crypto = require("crypto");
   return {
