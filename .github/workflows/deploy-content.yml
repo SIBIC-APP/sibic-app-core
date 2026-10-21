@@ -1,0 +1,58 @@
+name: Deploy Content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'packages/content-schema/**'
+      - 'scripts/validate-content*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  validate-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      # instalacion de dependencias del proyecto
+      - run: pnpm install --frozen-lockfile
+
+      # validacion estricta de esquemas zod y hashes criptograficos
+      - run: pnpm run content:validate
+
+      # evitar filtrado de archivos estaticos en github pages
+      - run: touch content/.nojekyll
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # empaquetado del directorio de contenido como artefacto
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'content/'
+
+      # publicacion automatica en github pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
