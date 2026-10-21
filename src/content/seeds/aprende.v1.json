@@ -1,0 +1,203 @@
+{
+  "packId": "aprende",
+  "version": 1,
+  "modules": [
+    {
+      "id": "mod-estado",
+      "title": "El Estado Guatemalteco",
+      "description": "Comprende los tres poderes del Estado y los órganos de control constitucional.",
+      "icon": "landmark",
+      "sort": 1
+    },
+    {
+      "id": "mod-elecciones",
+      "title": "Sistema Electoral y Voto",
+      "description": "Cómo se eligen presidente, diputados distritales y alcaldes municipales.",
+      "icon": "vote",
+      "sort": 2
+    },
+    {
+      "id": "mod-desinfo",
+      "title": "Análisis Crítico y Verificación",
+      "description": "Herramientas para contrastar propuestas y no caer en desinformación.",
+      "icon": "shield-check",
+      "sort": 3
+    }
+  ],
+  "lessons": [
+    {
+      "id": "les-estado-1",
+      "moduleId": "mod-estado",
+      "title": "Los Tres Poderes del Estado",
+      "summary": "Descubre la separación de funciones entre Ejecutivo, Legislativo y Judicial.",
+      "xpReward": 50,
+      "estimatedMinutes": 3,
+      "sort": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "content": "La Constitución de 1985 establece que la soberanía de Guatemala radica en el pueblo, quien la delega para su ejercicio en los tres poderes del Estado: Legislativo, Ejecutivo y Judicial.",
+          "title": "Fundamento Constitucional"
+        },
+        {
+          "type": "callout",
+          "content": "Ningún organismo está subordinado a otro: el principio de frenos y contrapesos busca evitar la concentración del poder en una sola figura.",
+          "title": "Principio Clave"
+        },
+        {
+          "type": "text",
+          "content": "El Ejecutivo administra y formula políticas públicas; el Legislativo crea y reforma leyes además de aprobar el presupuesto; el Judicial juzga y promueve la ejecución de lo juzgado con independencia.",
+          "title": "¿Quién hace qué?"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "q-les-1-1",
+          "prompt": "¿Cuál de los tres organismos del Estado tiene la función de crear y reformar las leyes en Guatemala?",
+          "options": [
+            {
+              "id": "opt-1",
+              "text": "Organismo Ejecutivo (Presidente y Ministerios)",
+              "isCorrect": false,
+              "explanation": "El Ejecutivo ejecuta las leyes y administra el gobierno, pero no tiene potestad para redactar ni aprobar leyes por sí mismo."
+            },
+            {
+              "id": "opt-2",
+              "text": "Organismo Legislativo (Congreso de la República)",
+              "isCorrect": true,
+              "explanation": "¡Correcto! El Congreso de la República es el órgano representativo encargado de legislar y fiscalizar."
+            },
+            {
+              "id": "opt-3",
+              "text": "Organismo Judicial (Corte Suprema de Justicia)",
+              "isCorrect": false,
+              "explanation": "El Judicial administra justicia y aplica la ley, no la legisla."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "les-elecciones-1",
+      "moduleId": "mod-elecciones",
+      "title": "¿Qué elegimos en las urnas?",
+      "summary": "Identifica las 5 papeletas de votación y las autoridades electas en Guatemala.",
+      "xpReward": 50,
+      "estimatedMinutes": 4,
+      "sort": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "content": "En las elecciones generales recibes papeletas de diferentes colores para elegir: Presidente y Vicepresidente (blanca), Diputados Lista Nacional (verde), Diputados Distritales (celeste), Alcalde y Corporación Municipal (rosada) y Diputados al Parlacen (amarilla).",
+          "title": "Las Cinco Papeletas"
+        },
+        {
+          "type": "quote",
+          "content": "El Tribunal Supremo Electoral (TSE) es la máxima autoridad en materia electoral y es independiente de los tres poderes del Estado.",
+          "title": "Autoridad Electoral"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "q-les-2-1",
+          "prompt": "¿Qué entidad ciudadana independiente se encarga de organizar y declarar la validez de las elecciones en Guatemala?",
+          "options": [
+            {
+              "id": "opt-a",
+              "text": "El Ministerio de Gobernación",
+              "isCorrect": false,
+              "explanation": "El Ministerio de Gobernación es parte del Ejecutivo y solo brinda seguridad pública."
+            },
+            {
+              "id": "opt-b",
+              "text": "El Tribunal Supremo Electoral (TSE)",
+              "isCorrect": true,
+              "explanation": "¡Exacto! El TSE es una institución constitucional autónoma no supeditada a ningún organismo de gobierno."
+            },
+            {
+              "id": "opt-c",
+              "text": "La Presidencia de la República",
+              "isCorrect": false,
+              "explanation": "La Presidencia no puede intervenir en la organización ni en los resultados electorales."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "les-desinfo-1",
+      "moduleId": "mod-desinfo",
+      "title": "Verificando Propuestas Políticas",
+      "summary": "Aprende a contrastar si una propuesta es viable o si es desinformación electoral.",
+      "xpReward": 60,
+      "estimatedMinutes": 3,
+      "sort": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "content": "Toda propuesta sólida debe responder a tres preguntas: ¿Cómo se financia? ¿Quién tiene la atribución legal para ejecutarla? ¿En qué plazo es viable?",
+          "title": "El Triángulo de Viabilidad"
+        },
+        {
+          "type": "callout",
+          "content": "Cuidado con promesas de candidatos que prometen funciones que le corresponden a otro cargo (por ejemplo, un alcalde prometiendo cambiar el Código Penal).",
+          "title": "Alerta de Desinformación"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "q-les-3-1",
+          "prompt": "¿Cuál es un indicador clave para evaluar si una promesa electoral es viable?",
+          "options": [
+            {
+              "id": "opt-x",
+              "text": "Si el candidato la repite frecuentemente en redes sociales",
+              "isCorrect": false,
+              "explanation": "La repetición en redes es una estrategia de marketing, no una prueba de viabilidad presupuestaria ni técnica."
+            },
+            {
+              "id": "opt-y",
+              "text": "Si detalla la fuente de financiamiento y corresponde a las atribuciones del cargo",
+              "isCorrect": true,
+              "explanation": "¡Muy bien! Una propuesta viable siempre explica de dónde saldrán los recursos y respeta las leyes vigentes."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sibiCats": [
+    {
+      "id": "cat-novato",
+      "name": "Sibi Cat Cívico",
+      "title": "Ciudadano Inicial",
+      "description": "Tu compañero felino en el comienzo de tu viaje de formación democrática.",
+      "requiredXp": 0,
+      "badge": "🐱"
+    },
+    {
+      "id": "cat-constituyente",
+      "name": "Sibi Cat Constituyente",
+      "title": "Guardián de la Carta Magna",
+      "description": "Comprendes la estructura del Estado y el valor de las instituciones republicanas.",
+      "requiredXp": 50,
+      "badge": "📜"
+    },
+    {
+      "id": "cat-detective",
+      "name": "Sibi Cat Detective Cívico",
+      "title": "Verificador de Propuestas",
+      "description": "Reconoces falacias y sabes contrastar fuentes de financiamiento electoral.",
+      "requiredXp": 100,
+      "badge": "🔍"
+    },
+    {
+      "id": "cat-embajador",
+      "name": "Sibi Cat Embajador Democrático",
+      "title": "Líder Comunitario",
+      "description": "Has dominado los conceptos clave de la participación cívica informada.",
+      "requiredXp": 150,
+      "badge": "👑"
+    }
+  ]
+}

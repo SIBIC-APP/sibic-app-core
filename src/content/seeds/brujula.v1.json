@@ -1,0 +1,140 @@
+{
+  "packId": "brujula",
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "economic",
+      "name": "Eje Económico",
+      "minLabel": "Rol Social del Estado",
+      "maxLabel": "Libre Mercado y Competencia",
+      "description": "Evalúa la visión sobre la intervención pública en servicios esenciales frente a la libre iniciativa privada."
+    },
+    {
+      "id": "social",
+      "name": "Eje Social e Institucional",
+      "minLabel": "Libertades Civiles y Diversidad",
+      "maxLabel": "Tradición y Orden Institucional",
+      "description": "Evalúa prioridades sobre garantías cívicas, participación comunitaria y preservación de valores institucionales tradicionales."
+    }
+  ],
+  "quadrants": [
+    {
+      "id": "q1",
+      "title": "Solidario y Garanticista",
+      "shortDescription": "Énfasis en protección social universal y amplias libertades civiles.",
+      "detailedExplanation": "Esta postura prioriza la inversión pública en salud, educación e infraestructura comunitaria, junto con la defensa de derechos individuales, diversidad e inclusión ciudadana.",
+      "colorToken": "compass-q1"
+    },
+    {
+      "id": "q2",
+      "title": "Comunitario y Tradicional",
+      "shortDescription": "Énfasis en el rol asistencial del Estado con apego al orden social tradicional.",
+      "detailedExplanation": "Esta postura valora la cohesión comunitaria y la intervención estatal para mitigar desigualdades, manteniendo el respeto por las costumbres cívicas y la estabilidad moral.",
+      "colorToken": "compass-q2"
+    },
+    {
+      "id": "q3",
+      "title": "Libre Mercado y Garanticista",
+      "shortDescription": "Énfasis en emprendimiento privado y libertades civiles individuales.",
+      "detailedExplanation": "Esta perspectiva promueve la desregulación, la facilitación de negocios e innovación económica privada, combinada con un alto respeto por la autonomía individual y la privacidad.",
+      "colorToken": "compass-q3"
+    },
+    {
+      "id": "q4",
+      "title": "Libre Mercado e Institucional",
+      "shortDescription": "Énfasis en competitividad económica, certeza jurídica y orden público.",
+      "detailedExplanation": "Esta postura sostiene que el crecimiento se logra a través de la inversión privada, disciplina fiscal y combate estricto a la criminalidad mediante fuerzas de orden sólidas.",
+      "colorToken": "compass-q4"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-eco-1",
+      "topic": "Salud Pública",
+      "text": "El Estado guatemalteco debe garantizar acceso universal y gratuito a medicamentos esenciales, incluso si requiere mayor recaudación fiscal.",
+      "context": "En Guatemala, más del 50% del gasto en salud es gasto de bolsillo de las familias.",
+      "weights": {
+        "economic": -1.0,
+        "social": 0.0
+      },
+      "sort": 1
+    },
+    {
+      "id": "q-eco-2",
+      "topic": "Infraestructura",
+      "text": "Las carreteras y puertos estratégicos se desarrollan con mayor eficiencia mediante alianzas público-privadas y concesiones que mediante administración pública directa.",
+      "context": "El debate nacional gira en torno a la lentitud en la ejecución de obra pública frente a los costos de peajes privados.",
+      "weights": {
+        "economic": 1.0,
+        "social": 0.0
+      },
+      "sort": 2
+    },
+    {
+      "id": "q-eco-3",
+      "topic": "Educación",
+      "text": "Se debe aumentar sustancialmente el presupuesto escolar y la alimentación estudiantil en áreas rurales, priorizando la cobertura pública sobre colegios privados.",
+      "context": "La tasa de cobertura en ciclo básico y diversificado presenta brechas significativas entre el área metropolitana y el interior del país.",
+      "weights": {
+        "economic": -0.9,
+        "social": -0.2
+      },
+      "sort": 3
+    },
+    {
+      "id": "q-eco-4",
+      "topic": "Emprendimiento",
+      "text": "Reducir impuestos corporativos y trámites de inscripción es la mejor vía para formalizar la economía y generar empleos formales en el país.",
+      "context": "Aproximadamente el 70% de la fuerza laboral guatemalteca se encuentra en la informalidad.",
+      "weights": {
+        "economic": 1.0,
+        "social": 0.1
+      },
+      "sort": 4
+    },
+    {
+      "id": "q-soc-1",
+      "topic": "Pueblos Indígenas",
+      "text": "El Estado debe consultar formalmente a las comunidades y respetar sus formas tradicionales de organización comunitaria en proyectos territoriales.",
+      "context": "Guatemala es un país multiétnico donde los Acuerdos de Paz y el Convenio 169 reconocen derechos específicos de pueblos originarios.",
+      "weights": {
+        "economic": -0.3,
+        "social": -1.0
+      },
+      "sort": 5
+    },
+    {
+      "id": "q-soc-2",
+      "topic": "Seguridad y Orden",
+      "text": "Para frenar la extorsión y la criminalidad, es justificado endurecer penas y permitir estados de excepción prolongados en zonas conflictivas.",
+      "context": "La extorsión a comercios y transporte es uno de los problemas de seguridad más agudos en el país.",
+      "weights": {
+        "economic": 0.0,
+        "social": 1.0
+      },
+      "sort": 6
+    },
+    {
+      "id": "q-soc-3",
+      "topic": "Transparencia Cívica",
+      "text": "Toda información financiera de compras públicas, fideicomisos y declaraciones de bienes de funcionarios debe ser 100% pública y sin reserva legal.",
+      "context": "La Ley de Acceso a la Información Pública es un pilar fundamental para la rendición de cuentas ciudadana.",
+      "weights": {
+        "economic": -0.2,
+        "social": -0.8
+      },
+      "sort": 7
+    },
+    {
+      "id": "q-soc-4",
+      "topic": "Tradición y Valores",
+      "text": "La educación escolar pública debe preservar primordialmente valores morales y familiares tradicionales de la sociedad guatemalteca.",
+      "context": "Existe debate sobre el contenido curricular nacional y programas de educación con pertinencia cultural y familiar.",
+      "weights": {
+        "economic": 0.0,
+        "social": 1.0
+      },
+      "sort": 8
+    }
+  ]
+}

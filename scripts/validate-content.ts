@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { fileURLToPath } from "url";
-import { Manifest, HistoryPack } from "../packages/content-schema/index";
+import { Manifest, HistoryPack, BrujulaPack, AprendePack } from "../packages/content-schema/index";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -64,6 +64,16 @@ export function validateAllContent(contentDir: string = path.resolve(__dirname, 
           throw new Error(`Event "${ev.id}" references non-existent sourceId "${ev.sourceId}"`);
         }
       }
+    } else if (packRef.id === "brujula") {
+      const parsed = BrujulaPack.parse(json);
+      console.log(
+        `[validate-content] Pack "${packRef.id}" v${parsed.version} valid (${parsed.questions.length} questions, ${parsed.quadrants.length} quadrants, ${parsed.dimensions.length} dimensions)`
+      );
+    } else if (packRef.id === "aprende") {
+      const parsed = AprendePack.parse(json);
+      console.log(
+        `[validate-content] Pack "${packRef.id}" v${parsed.version} valid (${parsed.modules.length} modules, ${parsed.lessons.length} lessons, ${parsed.sibiCats.length} Sibi Cats)`
+      );
     }
   }
 

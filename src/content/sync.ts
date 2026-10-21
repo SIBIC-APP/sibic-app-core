@@ -1,4 +1,4 @@
-import { HistoryPack } from "@content-schema";
+import { AprendePack, BrujulaPack, HistoryPack } from "@content-schema";
 import { DatabaseAdapter } from "../db/adapter/types";
 import { applyPack } from "./applier";
 import { calculateSha256 } from "./hasher";
@@ -101,6 +101,22 @@ export async function syncContent(
         if (!parsed.success) {
           throw new Error(
             `Schema validation failed for pack "historia": ${parsed.error.issues.map((i) => i.message).join(", ")}`
+          );
+        }
+        validatedData = parsed.data;
+      } else if (packRef.id === "brujula") {
+        const parsed = BrujulaPack.safeParse(json);
+        if (!parsed.success) {
+          throw new Error(
+            `Schema validation failed for pack "brujula": ${parsed.error.issues.map((i) => i.message).join(", ")}`
+          );
+        }
+        validatedData = parsed.data;
+      } else if (packRef.id === "aprende") {
+        const parsed = AprendePack.safeParse(json);
+        if (!parsed.success) {
+          throw new Error(
+            `Schema validation failed for pack "aprende": ${parsed.error.issues.map((i) => i.message).join(", ")}`
           );
         }
         validatedData = parsed.data;

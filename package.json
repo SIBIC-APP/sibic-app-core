@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "content:validate": "node --no-warnings --experimental-strip-types scripts/validate-content.ts",
+    "content:validate": "vitest run scripts/validate-content.test.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",

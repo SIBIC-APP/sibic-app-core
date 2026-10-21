@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "minAppVersion": "1.0.0",
-  "generatedAt": "2026-10-20T23:36:23.180Z",
+  "generatedAt": "2026-10-20T23:48:17.537Z",
   "packs": [
     {
       "id": "historia",
@@ -9,6 +9,20 @@
       "url": "historia.v1.json",
       "sha256": "63b042fffc739540cba3ace0aaa9132c739934dc49cac4953ec0272bbd6353b3",
       "bytes": 3575
+    },
+    {
+      "id": "brujula",
+      "version": 1,
+      "url": "brujula.v1.json",
+      "sha256": "8b1e56017d22689b7ef22ec51581db1b57094ed3a635ef7b5e5f2b6a2f6a1c16",
+      "bytes": 6133
+    },
+    {
+      "id": "aprende",
+      "version": 1,
+      "url": "aprende.v1.json",
+      "sha256": "3af1ddefba29a41c3ba0c1cdf66670c72134ecde5c5605b7e4c947f4582d11f3",
+      "bytes": 7931
     }
   ]
 }

@@ -16,8 +16,8 @@ describe("Database Migrations", () => {
     const version0 = await db.getFirst<{ user_version: number }>("PRAGMA user_version;");
     expect(version0?.user_version).toBe(0);
 
-    const version1 = await runMigrations(db, contentMigrations, "content.db");
-    expect(version1).toBe(1);
+    const versionAfterMigrations = await runMigrations(db, contentMigrations, "content.db");
+    expect(versionAfterMigrations).toBe(contentMigrations.length);
 
     // Verify key tables exist
     const tables = await db.all<{ name: string }>(
@@ -33,10 +33,14 @@ describe("Database Migrations", () => {
     expect(tableNames).toContain("proposal");
     expect(tableNames).toContain("history_period");
     expect(tableNames).toContain("history_event");
+    expect(tableNames).toContain("aprende_module");
+    expect(tableNames).toContain("aprende_lesson");
+    expect(tableNames).toContain("brujula_question");
+    expect(tableNames).toContain("brujula_quadrant");
 
-    // Running again should be a no-op and keep version 1
+    // Running again should be a no-op and keep current version
     const versionAfterNoop = await runMigrations(db, contentMigrations, "content.db");
-    expect(versionAfterNoop).toBe(1);
+    expect(versionAfterNoop).toBe(contentMigrations.length);
   });
 
   it("applies user.db migrations and protects user tables", async () => {
